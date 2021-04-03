@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Back Issues</h2>
+
+<ul>
+    {% for i in issue_list %}
+    <li>Issue {{ i.issue_num }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,93 @@
+/* index styles */
+
+/* Display by screen size */
+
+/* div#backissues > img {
+    max-width: 100%;
+    width: 480px;
+    height: 300px;
+    object-fit: cover;
+}
+
+img#latestcover {
+    max-width: 100%;
+    min-width: 100%;
+    height: auto;
+    object-fit: cover;
+} */
+
+@media (min-width: 780px) { /* 780 and larger */
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: repeat(5, 550px);
+        gap: 1em;
+    }
+
+    .grid > * {
+        border: 1px solid blue;
+    }
+
+
+    /* img#latestcover { 
+        height: 542px; 
+        object-fit: cover;
+    } */
+
+    div#cover {
+        grid-row: 1 / 2;
+        grid-column: 1 / 13;
+    }
+
+    div#intro {
+        grid-column: 4 / 11;
+        grid-row: 2;
+    }
+
+    div#backissues {
+        grid-row: 3;
+    }
+
+    div#backissues > div#head {
+        grid-column: 1 / 2;
+    }
+
+    div#backissues > div#bod {
+        grid-column: 3 / 10;
+    }
+
+    div#backissues > div#bod > img {
+        width: 645px;
+        height: 345px;
+        object-fit: cover;
+    }
+
+    div#aboutus {
+        position: relative; 
+        max-width: 645px; 
+        margin-left:85px;
+        grid-row: 4;
+    }
+
+    div#aboutus > div#text {
+        grid-column: 2 / span 8;
+    }
+
+    div#aboutus > div#head {
+        grid-column: 11 / 12;
+    }
+
+    div#newssub {
+        grid-row: 5;
+    }
+
+    h1.rotater { 
+        /* Abs positioning makes it not take up vert space */
+
+        /* Rotate from top left corner (not default) */
+        transform-origin: 0 0;
+        transform: rotate(-90deg);
+    }
+
+}

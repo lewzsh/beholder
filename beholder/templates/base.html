@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:ital,wght@0,100;0,300;0,500;1,400;1,700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{% static 'beholder/styles.css' %}">
+
+<title>Beholder Test</title>
+
+<body>
+  
+    <div class="wrapper">
+
+        <header class="header"><a href="{% url 'index' %}"><img src="{% static 'beholder/images/beholdertext.svg' %}" alt="Beholder magazine logo" style="width: 338px; height: 79px;" ></a></header>
+        
+        <nav class="nav">
+            <ul>
+                <li><a href="">Current Issue</a></li>
+                <li><a href="#navbackissues">Back Issues</a></li>
+                <li><a href="#navaboutus">About Us</a></li>
+            </ul>
+        </nav>
+
+        <section class="content">
+
+            {% block content %}
+            {% endblock content %}
+        
+        </section>
+
+        <footer class="footer">
+            <h4 style="color:#888888">
+                &copy; Beholder Magazine 2021
+            </h4>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

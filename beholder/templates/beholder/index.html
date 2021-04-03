@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<img id="latestcover" src="{% static 'beholder/images/camera_web.jpg' %}" alt="issue 2 cover image"> 
+
+<div id="intro">
+    <p>
+        Beholder is an exploration of survival. Its message is captured within the ways that we experience suffering and attempt to find ease. 
+        In humor especially we quirk our lips into wry grins and release our pain in small snickers and booming guffaws; 
+        yet sometimes we need not even be so cynical and sometimes we just want to preserve quiet, quick moments of joy. 
+        This publication is a curation of all our frayed pieces as interwoven threads. It’s a small offering of our hearts given to you in this dark time. 
+        We hope that something within these pages might lift you up. Or, at least if you find it terrible, that it provides you with a good laugh.
+    </p>
+</div>
+
+<div id="backissues">
+    <h1 class="rotate" style="position: absolute;bottom: 0;left: 0;">
+        Back Issues
+    </h1>
+    <img src="{% static 'beholder/images/Rat.jpg' %}" alt="issue 1 cover image">
+</div>
+
+<div id="aboutus">
+    <h1 class="rotate" style="position: absolute;bottom: 0;right: 0;">About Us</h1>
+    <p>
+        Beholder Magazine is an independent publication created by a couple of femme queers living in Seattle. 
+        We want to create an equitable platform for marginalized groups and want to especially encourage all PoC, trans, queer, femme, 
+        differently-abled, neuroatypical, or otherwise marginalized creative people to submit if interested. 
+        That said, Beholder is a magazine by all people for all people, and we want to be clear that there’s no “you must have no greater than x privilege” measuring stick we’re using. 
+        Unless someone makes that for us. Can someone make that for us?
+        <br><br>
+        We are currently working on publishing each issue annually, and look forward to compiling and printing an anthology every four issues. 
+    </p>
+</div>
+
+<div id="newssub">
+    <form style="padding:3px;text-align:center;" action="https://tinyletter.com/beholdermagazine" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/beholdermagazine', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+        <h4><label for="tlemail">Want to stay in the loop?</label></h4>
+        <h4><input type="text" style="width:140px" name="email" id="tlemail" placeholder="email address">
+        <input type="hidden" value="1" name="embed"/><input type="submit" value="Subscribe" /></h4>
+    </form> 
+</div>
+
+{% endblock %}
