@@ -62,6 +62,7 @@ nav a {
     font-style: italic;
 }
 
+
 /* Grid */
 .header {
     grid-area: header;
@@ -79,7 +80,10 @@ nav a {
     grid-area: footer;
 }
 
+
 /* Display by screen size */
+
+/* Base */
 .wrapper {
     display: grid;
     gap: 0px;
@@ -90,20 +94,6 @@ nav a {
         "footer";
 }
 
-div#backissues > img {
-    max-width: 100%;
-    width: 480px;
-    height: 300px;
-    object-fit: cover;
-}
-
-img#latestcover {
-    max-width: 100%;
-    min-width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-
 nav ul {
     display: flex;
     flex-direction: column;
@@ -112,7 +102,25 @@ nav ul {
     gap: 10px;
 }
 
+/* Index */
+img#latestcover {
+    max-width: 100%;
+    min-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+#issuelist > img {
+    max-width: 100%;
+    width: 480px;
+    height: 300px;
+    object-fit: cover;
+}
+
+
 @media (min-width: 490px) { /* 490 and larger */
+    
+    /* Base */
     .wrapper {
         grid-template-columns: 3fr 1fr;
         grid-template-areas:
@@ -131,6 +139,8 @@ nav ul {
 }
 
 @media (min-width: 780px) { /* 780 and larger */
+    
+    /* Base */
     .wrapper {
         grid-template-columns: 2fr 2fr 2fr;
         grid-template-areas:
@@ -151,53 +161,77 @@ nav ul {
         margin-bottom: 0em;
     }
 
-    img#latestcover { 
-        height: 542px; 
-        object-fit: cover;
-    }
-
-    div#intro {
-        position: relative; 
-        margin-top: 40px; 
-        margin-left:250px;
-        max-width: 560px;
-    }
-
-    div#backissues {
-        position: relative;
-        margin-left:85px;
-        margin-top: 40px;
-    }
-
-    div#backissues > img {
-        width: 645px;
-        height: 345px;
-        object-fit: cover;
-    }
-
-    div#aboutus {
-        position: relative; 
-        max-width: 645px; 
-        margin-left:85px;
-    }
-
-    h1.rotater { 
-        /* Abs positioning makes it not take up vert space */
-        position: relative;
-        top: 0;
-        left: 0;
-
-        /* Rotate from top left corner (not default) */
-        transform-origin: 0 0;
-        transform: rotate(-90deg);
-    }
-
     footer {
         margin-top: 70px;
         margin-right: 0px;
         margin-bottom: 0px;
         padding: 0px;
         text-align:right;
+    }
+
+    /* Index */
+    .rotate { 
+        /* sideways-lr wasn't supported yet */
+        writing-mode: vertical-rl;
+        margin: 0em;
+        line-height: 1em;
+        transform: rotate(180deg);
+    }
+
+    img#latestcover {
+        height: 542px; 
+        object-fit: cover
+    }
+
+    #intro {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+    }
+    #intro > p {
+        grid-column: 4 / 11;
+        margin-top: 4em;
+    }
+
+    #backissues {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        margin-top: 4em;
+    }
+    #archiveheader {
+        grid-column: 1 / 2;
+        display: flex;
+        align-items: flex-start;
+        margin-left: 2em;
+    }
+    #issuelist {
+        grid-column: 3 / 10;
+    }
+    #issuelist > img {
+        width: 645px;
+        height: 345px;
+        object-fit: cover;
+        max-width: 100%;
+    }
+
+    #aboutus {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        margin-top: 4em;
+        margin-bottom: 4em;
+    }
+    #aboutheader {
+        grid-column: 11 / 12;
+        order: 1;
+        display: flex;
+        align-items: flex-start;
+    }
+    #abouttext {
+        grid-column: 2 / 10;
+        order: 0;
+        max-width: 100%;
+    }
+    #abouttext > p {
+        margin-top: 0em;
     }
 
 }

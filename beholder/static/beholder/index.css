@@ -2,7 +2,7 @@
 
 /* Display by screen size */
 
-/* div#backissues > img {
+div#backissues > img {
     max-width: 100%;
     width: 480px;
     height: 300px;
@@ -14,7 +14,7 @@ img#latestcover {
     min-width: 100%;
     height: auto;
     object-fit: cover;
-} */
+}
 
 @media (min-width: 780px) { /* 780 and larger */
 
@@ -30,10 +30,10 @@ img#latestcover {
     }
 
 
-    /* img#latestcover { 
+    img#latestcover { 
         height: 542px; 
         object-fit: cover;
-    } */
+    }
 
     div#cover {
         grid-row: 1 / 2;
@@ -57,7 +57,7 @@ img#latestcover {
         grid-column: 3 / 10;
     }
 
-    div#backissues > div#bod > img {
+    div#backissues > img {
         width: 645px;
         height: 345px;
         object-fit: cover;
@@ -82,7 +82,7 @@ img#latestcover {
         grid-row: 5;
     }
 
-    h1.rotater { 
+    h1.rotate { 
         /* Abs positioning makes it not take up vert space */
 
         /* Rotate from top left corner (not default) */
