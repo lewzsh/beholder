@@ -8,6 +8,7 @@ from django.urls import reverse
 class Issue(models.Model):
     issue_num = models.IntegerField(unique=True)
     release_date = models.DateField()
+    cover_img_url = models.URLField(null=True)
     slug = models.SlugField(unique=True)
 
     class Meta:

@@ -21,9 +21,11 @@
         
         <nav class="nav">
             <ul>
-                <li><a href="">Current Issue</a></li>
-                <li><a href="#navbackissues">Back Issues</a></li>
-                <li><a href="#navaboutus">About Us</a></li>
+                <li><a href="{% url 'current' %}">Current</a></li>
+                <li><a href="{% url 'archive' %}">Past</a></li>
+                <li><a href="{% url 'contributors' %}">Contributors</a></li>
+                <li><a href="">Submit</a></li>
+                <li><a href="https://beholdermag.bigcartel.com/" target="_blank">Shop</a></li>
             </ul>
         </nav>
 
@@ -36,7 +38,7 @@
 
         <footer class="footer">
             <h4 style="color:#888888">
-                &copy; Beholder Magazine 2021
+                &copy; Beholder Magazine 2018–{% now 'Y' %}
             </h4>
         </footer>
 

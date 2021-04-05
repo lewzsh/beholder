@@ -86,7 +86,7 @@ nav a {
 /* Base */
 .wrapper {
     display: grid;
-    gap: 0px;
+    gap: 0em;
     grid-template-areas:
         "header"
         "nav"
@@ -98,8 +98,16 @@ nav ul {
     display: flex;
     flex-direction: column;
     list-style: none;
-    padding:0px;
-    gap: 10px;
+    padding:0em;
+    gap: 1em;
+}
+
+footer {
+    margin-top: 70px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    padding: 0px;
+    text-align:right;
 }
 
 /* Index */
@@ -140,6 +148,18 @@ img#latestcover {
 
 @media (min-width: 780px) { /* 780 and larger */
     
+    h1.rotate { 
+        /* sideways-lr wasn't supported yet */
+        writing-mode: vertical-rl;
+        margin: 0em;
+        line-height: 1em;
+        transform: rotate(180deg);
+    }
+    div.rotate {
+        display: flex;
+        align-items: flex-start;
+    }
+
     /* Base */
     .wrapper {
         grid-template-columns: 2fr 2fr 2fr;
@@ -157,30 +177,14 @@ img#latestcover {
 
     nav ul {
         line-height: 1em;
-        display: flex;
         margin-bottom: 0em;
-    }
-
-    footer {
-        margin-top: 70px;
-        margin-right: 0px;
-        margin-bottom: 0px;
-        padding: 0px;
-        text-align:right;
+        gap: 1.5em;
     }
 
     /* Index */
-    .rotate { 
-        /* sideways-lr wasn't supported yet */
-        writing-mode: vertical-rl;
-        margin: 0em;
-        line-height: 1em;
-        transform: rotate(180deg);
-    }
-
     img#latestcover {
         height: 542px; 
-        object-fit: cover
+        object-fit: cover;
     }
 
     #intro {
@@ -199,8 +203,6 @@ img#latestcover {
     }
     #archiveheader {
         grid-column: 1 / 2;
-        display: flex;
-        align-items: flex-start;
         margin-left: 2em;
     }
     #issuelist {
@@ -222,8 +224,6 @@ img#latestcover {
     #aboutheader {
         grid-column: 11 / 12;
         order: 1;
-        display: flex;
-        align-items: flex-start;
     }
     #abouttext {
         grid-column: 2 / 10;
@@ -232,6 +232,33 @@ img#latestcover {
     }
     #abouttext > p {
         margin-top: 0em;
+    }
+
+    /* Content */
+    .page {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        margin-top: 4em;
+    }
+    .page > h2 {
+        grid-column: 2 / span 7;
+        grid-row: 1;
+        margin-bottom: 0.5em;
+    }
+    .page > h3 {
+        grid-column: 2 / span 6;
+        grid-row: 2;
+        margin-top: 0em;
+        margin-bottom: 2em;
+    }
+
+    .short {
+        grid-column: 3 / span 7;
+        grid-row: 3;
+    }
+    .long {
+        grid-column: 3 / span 7;
+        grid-row: 3;
     }
 
 }

@@ -4,8 +4,9 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('backissues/', views.archive, name='archive'),
-    path('issuedetails/<int:id>', views.issue, name='issuetoc'),
-    path('contentdetails/<int:id>', views.content_detail, name='contentdetail'),
-    path('contributors/', views.contributors, name='contributors')
+    path('archive/', views.archive, name='archive'),
+    path('issue<int:issue_num>/', views.issue, name='issuetoc'),
+    path('issue<int:issue_num>/<slug:slug>', views.content_detail, name='contentdetail'),
+    path('contributors/', views.contributors, name='contributors'),
+    path('current/', views.current, name='current'),
 ]
