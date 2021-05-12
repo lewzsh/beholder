@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:ital,wght@0,100;0,300;0,500;1,400;1,700&display=swap');
+@import url('https://unpkg.com/flickity@2/dist/flickity.min.css');
+@import url('https://unpkg.com/flickity-fullscreen@1/fullscreen.css');
 
 * {
     box-sizing: border-box;
@@ -260,5 +262,31 @@ img#latestcover {
         grid-column: 3 / span 7;
         grid-row: 3;
     }
+
+    /* Flickity */
+    .gallery {
+        background: #EEE;
+        /* height: 600px; */
+      }
+      
+    .gallery-cell {
+        height: 600px;
+        /* max-height: 100%; */
+        width: auto;
+        margin-right: 10px;
+        /* center images in cells with flexbox */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+    .gallery.is-fullscreen .gallery-cell {
+        height: 100%;
+    }
+
+    .gallery-cell > img {
+        display: block;
+        max-height: 100%;
+      }
 
 }

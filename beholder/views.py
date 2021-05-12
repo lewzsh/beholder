@@ -25,3 +25,6 @@ def contributors(request):
 def current(request):
     current_issue = Issue.objects.first()
     return issue(request, current_issue.issue_num)
+
+def test(request):
+    return render(request, 'beholder/carousel.html')
