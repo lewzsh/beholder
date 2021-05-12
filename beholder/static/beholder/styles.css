@@ -3,6 +3,7 @@
 @import url('https://unpkg.com/flickity-fullscreen@1/fullscreen.css');
 
 * {
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
 
@@ -126,6 +127,35 @@ img#latestcover {
     height: 300px;
     object-fit: cover;
 }
+
+    /* Flickity */
+    .gallery {
+        background: #EEE;
+      }
+      
+    .gallery-cell {
+        position: relative;
+        height: auto;
+        width: 100%;
+        max-height: 600px;
+        margin-right: 10px;
+        /* center images in cells with flexbox */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+    .gallery.is-fullscreen .gallery-cell {
+        height: 100%;
+    }
+
+    .gallery-cell > img {
+        display: block;
+        max-height: 600px;
+        width: auto;
+        height: 100%;
+        max-width: 100%;
+      }
 
 
 @media (min-width: 490px) { /* 490 and larger */
@@ -263,30 +293,5 @@ img#latestcover {
         grid-row: 3;
     }
 
-    /* Flickity */
-    .gallery {
-        background: #EEE;
-        /* height: 600px; */
-      }
-      
-    .gallery-cell {
-        height: 600px;
-        /* max-height: 100%; */
-        width: auto;
-        margin-right: 10px;
-        /* center images in cells with flexbox */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-    .gallery.is-fullscreen .gallery-cell {
-        height: 100%;
-    }
-
-    .gallery-cell > img {
-        display: block;
-        max-height: 100%;
-      }
 
 }
