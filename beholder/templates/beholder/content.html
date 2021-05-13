@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="scrollheader">
+    <div class="progress-container">
+        <div class="progress-bar" id="progBar"></div>
+    </div>
+</div>
+
 <div class="page">
 
     <h2>{{content_details}}</h2>
@@ -12,4 +18,15 @@
     </div>
 
 </div>
+
+<script>
+window.onscroll = function() {progBarFunction()};
+
+function progBarFunction() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  document.getElementById("progBar").style.width = scrolled + "%";
+}
+</script>
 {% endblock %}

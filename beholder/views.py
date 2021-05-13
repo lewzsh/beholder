@@ -32,3 +32,6 @@ def current(request):
 
 def test(request):
     return render(request, 'beholder/carousel.html')
+
+def submit(request):
+    return render(request, 'beholder/submit.html')
