@@ -6,7 +6,7 @@
 
 <ul>
     {% for i in issue_list %}
-    <li>Issue {{ i.issue_num }}</li>
+    <li><a href="{% url 'issuetoc' issue_num=i.issue_num %}">Issue {{ i.issue_num }}</a></li>
     {% endfor %}
 </ul>
 

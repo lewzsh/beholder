@@ -5,8 +5,8 @@
 <h2>Issue {{issue_details.issue_num}}</h2>
 
 <ul>
-    {% for c in toc %}
-    <li>{{ c.title }}</li>
+    {% for c in issue_details.contents.all %}
+    <li><a href="{% url 'contentdetail' issue_num=issue_details.issue_num slug=c.slug %}">{{ c.title }}</a></li>
     {% endfor %}
 </ul>
 

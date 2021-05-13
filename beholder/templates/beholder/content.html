@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="page">
 
-<h2>{{content_details.title}}</h2>
+    <h2>{{content_details}}</h2>
 
-<p>{{ content_details.body | safe }}
-</p>
+    <h3>by {% for p in content_details.creator.all %}{{ p }}{% endfor %}</h3>
 
+    <div class="{{ content_details.css_class | escape }}">
+        <p>{{ content_details.body | safe }}</p>
+    </div>
+
+</div>
 {% endblock %}
