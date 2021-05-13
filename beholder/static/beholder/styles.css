@@ -2,7 +2,7 @@
 @import url('https://unpkg.com/flickity@2/dist/flickity.min.css');
 @import url('https://unpkg.com/flickity-fullscreen@1/fullscreen.css');
 
-* {
+*, :after, :before {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
@@ -28,7 +28,6 @@ p {
 }
 
 h1 { /* vertical headers */
-    /* line-height: 2em; */
     font-family: 'Roboto Mono', monospace;
     font-size: 2.8125em; /* 45px */
     font-weight: 100;
@@ -112,6 +111,154 @@ footer {
     padding: 0px;
     text-align:right;
 }
+
+article ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding:0em;
+    gap: 1em;
+    font: 0.9375em 'Libre Baskerville', serif; /* 15px */
+    line-height:1.8em;
+}
+
+article ol {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    font: 0.9375em 'Libre Baskerville', serif; /* 15px */
+    line-height:1.8em;
+}
+
+/* Button */
+
+  :focus {
+    outline: none;
+  }
+  
+  button {
+    overflow: visible;
+    border: 0;
+    padding: 0;
+    margin: 1.8rem;
+  }
+  .btn.striped-shadow span {
+    display: block;
+    position: relative;
+    z-index: 2;
+    border: 5px solid;
+  }
+ 
+  .btn.striped-shadow.dark span {
+    border-color: #393939;
+    background: #fbfbfb;
+    color: #393939;
+  }
+  
+  .btn {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1em; /* 16px */
+    font-weight: 300;
+    display: inline-block;
+    position: relative;
+    transition: opacity .3s, z-index .3s step-end, -webkit-transform .3s;
+    transition: opacity .3s, z-index .3s step-end, transform .3s;
+    transition: opacity .3s,
+      z-index .3s step-end,
+      transform .3s,
+      -webkit-transform .3s;
+    z-index: 1;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  .btn {
+    width: 155px;
+    height: 48px;
+    line-height: 38px;
+  }
+  
+  button.btn.striped-shadow.dark:after, button.btn.striped-shadow.dark:before {
+    background-image: linear-gradient(
+      135deg,
+      transparent 0,
+      transparent 5px,
+      #393939 5px,
+      #393939 10px,
+      transparent 10px
+    );
+  }
+  
+  button.btn.striped-shadow:hover:before {
+    max-height: calc(100% - 10px);
+  }
+  
+  button.btn.striped-shadow:after {
+    width: calc(100% - 4px);
+    height: 8px;
+    left: -10px;
+    bottom: -9px;
+    background-size: 15px 8px;
+    background-repeat: repeat-x;
+  }
+  button.btn.striped-shadow:after, button.btn.striped-shadow:before {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 1;
+    transition: max-height .3s, width .3s, -webkit-transform .3s;
+    transition: transform .3s, max-height .3s, width .3s;
+    transition: transform .3s, max-height .3s, width .3s, -webkit-transform .3s;
+  }
+  
+  .btn.striped-shadow:hover {
+    -webkit-transform: translate(-12px, 12px);
+    -ms-transform: translate(-12px, 12px);
+    transform: translate(-12px, 12px);
+    z-index: 3;
+  }
+  
+  button.btn.striped-shadow:hover:after, button.btn.striped-shadow:hover:before {
+    -webkit-transform: translate(12px, -12px);
+    -ms-transform: translate(12px, -12px);
+    transform: translate(12px, -12px);
+  }
+  button.btn.striped-shadow:before {
+    width: 8px;
+    max-height: calc(100% - 5px);
+    height: 100%;
+    left: -12px;
+    bottom: -5px;
+    background-size: 8px 15px;
+    background-repeat: repeat-y;
+    background-position: 0 100%;
+  }
+
+/* Scroll indicator */
+
+.scrollheader {
+    position: fixed;
+    top: 0;
+    left:0;
+    z-index: 1;
+    width: 100%;
+    background-color: #f1f1f1;
+  }
+  
+  /* The progress container (grey background) */
+  .progress-container {
+    width: 100%;
+    height: 8px;
+    background: #ccc;
+  }
+  
+  /* The progress bar (scroll indicator) */
+  .progress-bar {
+    height: 8px;
+    background: #04AA6D;
+    width: 0%;
+  }
+
 
 /* Index */
 img#latestcover {
@@ -263,6 +410,43 @@ img#latestcover {
     #abouttext > p {
         margin-top: 0em;
     }
+
+    /* Submit */
+    article {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        margin-top: 4em;
+    }
+
+    #voicetone {
+        grid-column: 2 / span 7;
+        grid-row: 1;
+    }
+
+    #guidelinesheader {
+        grid-column: 1 / 2;
+        grid-row: 2;
+        margin-left: 2em;
+        margin-top: 4em;
+    }
+
+    #guidelines {
+        grid-column: 3 / 10;
+        grid-row: 2;
+        margin-top: 4em;
+    }
+
+    #guidelines > h2:first-child {
+        margin-top: 0em;
+        line-height: 0.8em;
+    }
+
+    #legal {
+        grid-column: 2 / span 9;
+        grid-row: 3;
+        margin-top: 4em;
+    }
+
 
     /* Content */
     .page {
