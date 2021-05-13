@@ -134,10 +134,9 @@ img#latestcover {
       }
       
     .gallery-cell {
-        position: relative;
-        height: auto;
-        width: 100%;
-        max-height: 600px;
+        height: 600px;
+        min-width: 100vw;
+        max-height: 100vh;
         margin-right: 10px;
         /* center images in cells with flexbox */
         display: flex;
@@ -151,12 +150,11 @@ img#latestcover {
 
     .gallery-cell > img {
         display: block;
-        max-height: 600px;
-        width: auto;
-        height: 100%;
+        max-height: 100%;
+        min-width: auto;
+        height: 100% auto;
         max-width: 100%;
       }
-
 
 @media (min-width: 490px) { /* 490 and larger */
     

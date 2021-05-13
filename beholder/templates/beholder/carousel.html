@@ -6,21 +6,15 @@
 
 <div class="page">
 
-    <h2>Comic</h2>
+    <h2>{{content_details}}</h2>
 
-    <h3>by author</h3>
+    <h3>by {% for p in content_details.creator.all %}{{ p }}{% endfor %}</h3>
 
 </div>
 
 <div class="gallery js-flickity" data-flickity='{ "fullscreen": true, "imagesLoaded": true}'>
 
-    <div class="gallery-cell"><img src="{% static '/beholder/images/Prince-Tea-House-WEB_Page_2.png' %}"></div>
-    <div class="gallery-cell"><img src="{% static '/beholder/images/Prince-Tea-House-WEB_Page_3.png' %}"></div>
-    <div class="gallery-cell"><img src="{% static '/beholder/images/Prince-Tea-House-WEB_Page_4.png' %}"></div>
-    <div class="gallery-cell"><img src="{% static '/beholder/images/Prince-Tea-House-WEB_Page_5.png' %}"></div>
-    <div class="gallery-cell"><img src="{% static '/beholder/images/Prince-Tea-House-WEB_Page_6.png' %}"></div>
-    <div class="gallery-cell"><img src="{% static '/beholder/images/Prince-Tea-House-WEB_Page_7.png' %}"></div>
-    <div class="gallery-cell"><img src="{% static '/beholder/images/Prince-Tea-House-WEB_Page_8.png' %}"></div>
+    {{ content_details.body | safe }}
 
 </div>
 
