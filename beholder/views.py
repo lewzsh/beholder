@@ -16,7 +16,11 @@ def issue(request, issue_num):
 
 def content_detail(request, issue_num, slug):
     content_details = get_object_or_404(Content, slug=slug)
-    return render(request, 'beholder/content.html', {'content_details': content_details})
+    css_class = content_details.get_content_class()
+    if css_class == 'comic':
+        return render(request, 'beholder/carousel.html', {'content_details': content_details})
+    else:
+        return render(request, 'beholder/content.html', {'content_details': content_details})
 
 def contributors(request):
     contributor_list = Bio.objects.all()
@@ -25,3 +29,6 @@ def contributors(request):
 def current(request):
     current_issue = Issue.objects.first()
     return issue(request, current_issue.issue_num)
+
+def test(request):
+    return render(request, 'beholder/carousel.html')

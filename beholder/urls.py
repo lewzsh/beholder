@@ -9,4 +9,5 @@ urlpatterns = [
     path('issue<int:issue_num>/<slug:slug>', views.content_detail, name='contentdetail'),
     path('contributors/', views.contributors, name='contributors'),
     path('current/', views.current, name='current'),
+    path('test/', views.test, name='test'),
 ]
