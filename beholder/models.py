@@ -41,7 +41,7 @@ class Bio(models.Model):
     social_url = models.URLField(blank=True)
     person_url = models.URLField(blank=True)
     bio_text = models.TextField()
-    bio_img_url = models.URLField(null=True)
+    bio_img_url = models.URLField(null=True, blank=True)
 
     class Meta:
         db_table = 'bio'
