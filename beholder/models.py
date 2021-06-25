@@ -8,7 +8,7 @@ from django.urls import reverse
 class Issue(models.Model):
     issue_num = models.IntegerField(unique=True)
     release_date = models.DateField()
-    cover_img_url = models.URLField(null=True)
+    cover_img_url = models.URLField(blank=True)
     slug = models.SlugField(unique=True)
 
     class Meta:
@@ -38,10 +38,10 @@ class Bio(models.Model):
     person = models.ForeignKey(Person, on_delete=models.DO_NOTHING)
     pronouns = models.CharField(max_length=50, blank=True)
     pseudonym = models.CharField(max_length=50, blank=True)
-    social_url = models.URLField(null=True)
-    person_url = models.URLField(null=True)
+    social_url = models.URLField(blank=True)
+    person_url = models.URLField(blank=True)
     bio_text = models.TextField()
-    bio_img_url = models.URLField()
+    bio_img_url = models.URLField(null=True, blank=True)
 
     class Meta:
         db_table = 'bio'
@@ -95,7 +95,7 @@ class Content(models.Model):
     #     super(Content, self).save(*args, **kwargs)
     
     def get_absolute_url(self):
-        return reverse('content_detail', kwargs={"slug": self.slug})
+        return reverse('contentdetail', kwargs={"issue_num": self.issue.issue_num, "slug": self.slug})
 
     def get_content_class(self):
         return self.css_class
