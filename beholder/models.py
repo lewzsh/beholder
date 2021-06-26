@@ -8,7 +8,7 @@ from django.urls import reverse
 class Issue(models.Model):
     issue_num = models.IntegerField(unique=True)
     release_date = models.DateField()
-    cover_img_url = models.URLField(blank=True)
+    cover_img_url = models.URLField(null=True, blank=True)
     slug = models.SlugField(unique=True)
 
     class Meta:
@@ -29,6 +29,7 @@ class Person(models.Model):
     class Meta:
         db_table = 'person'
         verbose_name_plural = 'people'
+        ordering = ['first_name']
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
@@ -46,6 +47,7 @@ class Bio(models.Model):
     class Meta:
         db_table = 'bio'
         verbose_name_plural = 'bios'
+        ordering = ['person']
 
     def __str__(self):
         return f'{self.person}\'s bio'

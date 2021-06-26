@@ -2,12 +2,44 @@
 
 {% block content %}
 
-<h2>Contributors</h2>
+<article>
 
-<ul>
-    {% for p in contributor_list %}
-    <li>{{ p }}</li>
-    {% endfor %}
-</ul>
+    <div class="rotate" id="contributorheader">
+        <h1 class="rotate">Contributors</h1>
+    </div>
+
+    <div id="contributorcontent">
+        {% for p in contributor_list %}
+        <button type="button" class="contributor" id="nav{{ p.id }}">
+            <h2>{{ p.person }}</h2>
+            <h4>({{ p.pronouns }})</h4>
+        </button>
+        <div>
+            <img src="{{ p.bio_img_url }}">
+            <!-- FIXME: add if/else -->
+            <h3><a href="{{ p.social_url }}">Social</a> | <a href="{{ p.person_url }}">Website</a></h3>
+            <p>{{ p.bio_text }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+</article>
+
+<script>
+    var coll = document.getElementsByClassName("contributor");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
+</script>
 
 {% endblock %}

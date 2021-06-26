@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="page">
+
+    <div class="rotate" id="ednoteheader">
+        <h1 class="rotate">Editor’s Note</h1>
+    </div>
+
+    <div class="{{ content_details.css_class | escape }}">
+        <p>{{ content_details.body | safe }}</p>
+        <p style="text-align: right;">—Lewis</p>
+    </div>
+
+</div>
+
+{% endblock %}

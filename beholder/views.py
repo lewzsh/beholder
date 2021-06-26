@@ -19,6 +19,8 @@ def content_detail(request, issue_num, slug):
     css_class = content_details.get_content_class()
     if css_class == 'comic':
         return render(request, 'beholder/carousel.html', {'content_details': content_details})
+    elif css_class == 'ednote':
+        return render(request, 'beholder/ednote.html', {'content_details': content_details})
     else:
         return render(request, 'beholder/content.html', {'content_details': content_details})
 
@@ -29,9 +31,6 @@ def contributors(request):
 def current(request):
     current_issue = Issue.objects.first()
     return issue(request, current_issue.issue_num)
-
-def test(request):
-    return render(request, 'beholder/carousel.html')
 
 def submit(request):
     return render(request, 'beholder/submit.html')
