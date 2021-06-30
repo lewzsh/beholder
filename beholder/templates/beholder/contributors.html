@@ -13,12 +13,25 @@
         <button type="button" class="contributor" id="nav{{ p.id }}">
             <h2>{{ p.person }}</h2>
             <h4>({{ p.pronouns }})</h4>
+            <span>
+                {% if p.social_url %}
+                <a href="{{ p.social_url }}"><img src="https://ik.imagekit.io/1uzvx5qbuom/beholder/instagram_JNlAhjO8wn.svg"></a>
+                {% endif %}
+                {% if p.person_url %}
+                <a href="{{ p.person_url }}"><img src="https://ik.imagekit.io/1uzvx5qbuom/beholder/website_77x5Mmj23.svg"></a>
+                {% endif %}
+            </span>
         </button>
         <div>
             <img src="{{ p.bio_img_url }}">
-            <!-- FIXME: add if/else -->
-            <h3><a href="{{ p.social_url }}">Social</a> | <a href="{{ p.person_url }}">Website</a></h3>
             <p>{{ p.bio_text }}</p>
+            {% if p.person.contributions.all %}
+            <p>Appears in: 
+                {% for c in p.person.contributions.all %}
+                <a href="{% url 'contentdetail' issue_num=c.issue.issue_num slug=c.slug %}">{{ c.title }} > </a>
+                {% endfor %}
+            </p>
+            {% endif %}
         </div>
         {% endfor %}
     </div>

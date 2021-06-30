@@ -1,32 +1,49 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="scrollheader">
-    <div class="progress-container">
-        <div class="progress-bar" id="progBar"></div>
+{% if content_details.css_class == 'long' %}
+    <div class="scrollheader">
+        <div class="progress-container">
+            <div class="progress-bar" id="progBar"></div>
+        </div>
     </div>
+
+    <script>
+        window.onscroll = function() {progBarFunction()};
+        
+        function progBarFunction() {
+        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var scrolled = (winScroll / height) * 100;
+        document.getElementById("progBar").style.width = scrolled + "%";
+        }
+    </script>
+{% endif %}
+<div class="topnav">
+    <a href=""><img style="margin-right: auto;" src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevronleft_0lEkWuUlQp.svg"></a>
+    <a href=""><img style="margin-left: auto;" src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevronright_AAQHrtBUGN.svg"></a>
 </div>
 
 <div class="page">
 
-    <h2>{{content_details}}</h2>
+    <h2>{% if content_details.title %}{{content_details.title}}{% endif %}</h2>
 
-    <h3>by {% for p in content_details.creator.all %}{{ p }}{% endfor %}</h3>
+    <h3>by {% for p in content_details.creator.all %}{{ p }} {% endfor %}</h3>
 
     <div class="{{ content_details.css_class | escape }}">
+        {% if content_details.img_url %}
+        <img src="{{ content_details.img_url }}?tr=w-600c-maintain_ratio" alt="{{content_details.body}}">
+        {% else %}
         <p>{{ content_details.body | safe }}</p>
+        {% endif %}
     </div>
 
 </div>
 
-<script>
-window.onscroll = function() {progBarFunction()};
+<div class="bottomnav">
+    <a href=""><img style="margin-right: auto;" src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevrondblleft_ozJWHIHxMX.svg"></a>
+    <a href=""><img style="margin-right: auto;" src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevronleft_0lEkWuUlQp.svg"></a>
+    <a href=""><img style="margin-left: auto;" src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevronright_AAQHrtBUGN.svg"></a>
+</div>
 
-function progBarFunction() {
-  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  var scrolled = (winScroll / height) * 100;
-  document.getElementById("progBar").style.width = scrolled + "%";
-}
-</script>
 {% endblock %}

@@ -10,6 +10,7 @@ class Issue(models.Model):
     release_date = models.DateField()
     cover_img_url = models.URLField(null=True, blank=True)
     slug = models.SlugField(unique=True)
+    toc_img = models.ForeignKey('Content', on_delete=models.DO_NOTHING, null=True, related_name='in_issue')
 
     class Meta:
         db_table = 'issue'
@@ -81,7 +82,8 @@ class Content(models.Model):
     metades = models.CharField(max_length=300, default="magazine page")
     page = models.IntegerField()
     css_class = models.CharField(max_length=7, choices=CONTENT_CHOICES, default=SHORT_FORM)
-    body = models.TextField()
+    body = models.TextField(blank=True)
+    img_url = models.URLField(blank=True, null=True)
 
     class Meta:
         db_table = 'content'

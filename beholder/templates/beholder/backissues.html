@@ -10,12 +10,12 @@
 
     <div id="backissuescontent">
         {% for i in issue_list %}
-        <span>
+        <div>
             <h2 style="text-align: right; margin-bottom: 0.2em;">Issue {{ i.issue_num }}</h2>
             <a href="{% url 'issuetoc' issue_num=i.issue_num %}">
                 <img src="{{ i.cover_img_url}}?tr=w-330,h-440,c-maintain_ratio">
             </a>
-        </span>
+        </div>
         {% endfor %}
     </div>
 
