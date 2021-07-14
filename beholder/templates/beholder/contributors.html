@@ -27,9 +27,7 @@
             <p>{{ p.bio_text }}</p>
             {% if p.person.contributions.all %}
             <p>Appears in: 
-                {% for c in p.person.contributions.all %}
-                <a href="{% url 'contentdetail' issue_num=c.issue.issue_num slug=c.slug %}">{{ c.title }} > </a>
-                {% endfor %}
+                {% for c in p.person.contributions.all %}{% if forloop.first %}<a href="{% url 'contentdetail' issue_num=c.issue.issue_num slug=c.slug %}">{{ c.title }}</a>{% elif forloop.last %} and <a href="{% url 'contentdetail' issue_num=c.issue.issue_num slug=c.slug %}">{{ c.title }}</a>{% else %}, <a href="{% url 'contentdetail' issue_num=c.issue.issue_num slug=c.slug %}">{{ c.title }}</a>{% endif %}{% endfor %}
             </p>
             {% endif %}
         </div>

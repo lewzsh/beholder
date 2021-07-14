@@ -2,7 +2,18 @@
 
 {% block content %}
 
-<div class="page">
+<div class="topnav">
+    {% if previous %}
+    <a href="{% url 'contentdetail' issue_num=content_details.issue.issue_num slug=previous.slug %}"><img style="margin-right: auto;" src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevronleft_0lEkWuUlQp.svg"></a>
+    {% else %}
+    <img style="margin-right: auto;visibility: hidden;" src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevronleft_0lEkWuUlQp.svg">
+    {% endif %}
+    {% if next %}
+    <a href="{% url 'contentdetail' issue_num=content_details.issue.issue_num slug=next.slug %}"><img style="margin-left: auto;" src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevronright_AAQHrtBUGN.svg"></a>
+    {% endif %}
+</div>
+
+<article>
 
     <div class="rotate" id="ednoteheader">
         <h1 class="rotate">Editor’s Note</h1>
@@ -13,6 +24,16 @@
         <p style="text-align: right;">—Lewis</p>
     </div>
 
+</article>
+
+<div class="bottomnav">
+    <a href="{% url 'issuetoc' issue_num=content_details.issue.issue_num %}"><img style="margin-right: auto;" src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevrondblleft_ozJWHIHxMX.svg"></a>
+    {% if previous %}
+    <a href="{% url 'contentdetail' issue_num=content_details.issue.issue_num slug=previous.slug %}"><img style="margin-right: auto;" src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevronleft_0lEkWuUlQp.svg"></a>
+    {% endif %}
+    {% if next %}
+    <a href="{% url 'contentdetail' issue_num=content_details.issue.issue_num slug=next.slug %}"><img style="margin-left: auto;" src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevronright_AAQHrtBUGN.svg"></a>
+    {% endif %}
 </div>
 
 {% endblock %}

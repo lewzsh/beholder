@@ -1,6 +1,5 @@
 from django.db import models
 from django.urls import reverse
-# from django.utils.text import slugify
 # from django.contrib.auth.models import User
 
 # Create your models here.
@@ -9,7 +8,6 @@ class Issue(models.Model):
     issue_num = models.IntegerField(unique=True)
     release_date = models.DateField()
     cover_img_url = models.URLField(null=True, blank=True)
-    slug = models.SlugField(unique=True)
     toc_img = models.ForeignKey('Content', on_delete=models.DO_NOTHING, null=True, related_name='in_issue')
 
     class Meta:
@@ -20,6 +18,8 @@ class Issue(models.Model):
     def __str__(self):
         return f'issue {self.issue_num}'
 
+    def get_absolute_url(self):
+        return reverse('issuetoc', kwargs={"issue_num": self.issue.issue_num})
 
 class Person(models.Model):
     first_name = models.CharField(max_length=50, blank=True)
@@ -74,7 +74,7 @@ class Content(models.Model):
         (ED_NOTE, 'editors note'),
     ]
 
-    title = models.CharField(max_length=250)
+    title = models.CharField(max_length=250, blank=True, default="")
     creator = models.ManyToManyField(Person, related_name='contributions')
     issue = models.ForeignKey(Issue, on_delete=models.DO_NOTHING, related_name='contents')
     slug = models.SlugField(max_length=200, unique=True)
@@ -93,14 +93,23 @@ class Content(models.Model):
     def __str__(self):
         return self.title
     
-    # Instead of this, override clean method in form
-    # def save(self, *args, **kwargs):
-    #     self.slug = slugify(self.title)
-    #     super(Content, self).save(*args, **kwargs)
-    
     def get_absolute_url(self):
         return reverse('contentdetail', kwargs={"issue_num": self.issue.issue_num, "slug": self.slug})
 
     def get_content_class(self):
         return self.css_class
 
+    def next(self):
+        end = self.issue.contents.last()
+        if self == end:
+            return None
+        else: 
+            nxt = self.page + 1
+            return self.issue.contents.get(page=nxt)
+
+    def previous(self):
+        if self.page == 1:
+            return None
+        else:
+            prv = self.page - 1
+            return self.issue.contents.get(page=prv)

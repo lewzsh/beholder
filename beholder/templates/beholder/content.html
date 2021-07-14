@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 {% if content_details.css_class == 'long' %}
     <div class="scrollheader">
         <div class="progress-container">
@@ -19,16 +20,25 @@
         }
     </script>
 {% endif %}
+
 <div class="topnav">
-    <a href=""><img style="margin-right: auto;" src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevronleft_0lEkWuUlQp.svg"></a>
-    <a href=""><img style="margin-left: auto;" src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevronright_AAQHrtBUGN.svg"></a>
+    {% if previous %}
+    <a href="{% url 'contentdetail' issue_num=content_details.issue.issue_num slug=previous.slug %}"><img style="margin-right: auto;" src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevronleft_0lEkWuUlQp.svg"></a>
+    {% else %}
+    <img style="margin-right: auto;visibility: hidden;" src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevronleft_0lEkWuUlQp.svg">
+    {% endif %}
+    {% if next %}
+    <a href="{% url 'contentdetail' issue_num=content_details.issue.issue_num slug=next.slug %}"><img style="margin-left: auto;" src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevronright_AAQHrtBUGN.svg"></a>
+    {% endif %}
 </div>
 
-<div class="page">
+<article>
 
-    <h2>{% if content_details.title %}{{content_details.title}}{% endif %}</h2>
+    <h2 class="title">{% if content_details.title %}{{content_details.title}}{% endif %}</h2>
 
-    <h3>by {% for p in content_details.creator.all %}{{ p }} {% endfor %}</h3>
+    <h3 class="byline">
+        by {% for p in content_details.creator.all %}{% if forloop.first %}{{ p }}{% elif forloop.last %} and {{ p }}{% else %}, {{ p }}{% endif %}{% endfor %}
+    </h3>
 
     <div class="{{ content_details.css_class | escape }}">
         {% if content_details.img_url %}
@@ -38,12 +48,16 @@
         {% endif %}
     </div>
 
-</div>
+</article>
 
 <div class="bottomnav">
-    <a href=""><img style="margin-right: auto;" src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevrondblleft_ozJWHIHxMX.svg"></a>
-    <a href=""><img style="margin-right: auto;" src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevronleft_0lEkWuUlQp.svg"></a>
-    <a href=""><img style="margin-left: auto;" src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevronright_AAQHrtBUGN.svg"></a>
+    <a href="{% url 'issuetoc' issue_num=content_details.issue.issue_num %}"><img style="margin-right: auto;" src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevrondblleft_ozJWHIHxMX.svg"></a>
+    {% if previous %}
+    <a href="{% url 'contentdetail' issue_num=content_details.issue.issue_num slug=previous.slug %}"><img style="margin-right: auto;" src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevronleft_0lEkWuUlQp.svg"></a>
+    {% endif %}
+    {% if next %}
+    <a href="{% url 'contentdetail' issue_num=content_details.issue.issue_num slug=next.slug %}"><img style="margin-left: auto;" src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevronright_AAQHrtBUGN.svg"></a>
+    {% endif %}
 </div>
 
 {% endblock %}

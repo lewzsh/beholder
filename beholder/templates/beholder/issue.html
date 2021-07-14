@@ -10,9 +10,12 @@
     <div id="toc">
         <ul id="toc">
             {% for c in issue_details.contents.all %}
+            {% if c.page != 0 %}
             <li><a href="{% url 'contentdetail' issue_num=issue_details.issue_num slug=c.slug %}">
-                <b>.{{ c.page }}</b> &emsp; {{ c.title }} by {% for p in c.creator.all %}{{ p }} {% endfor %}
+                <b>.{{ c.page }}</b> &emsp; {{ c.title }} by 
+                {% for p in c.creator.all %}{% if forloop.first %}{{ p }}{% elif forloop.last %} and {{ p }}{% else %}, {{ p }}{% endif %}{% endfor %}
             </a></li>
+            {% endif %}
             {% endfor %}
         </ul>
     </div>
@@ -20,10 +23,13 @@
     {% if issue_details.toc_img %}
     <div id="tocimg">
         <img src="{{ issue_details.toc_img.img_url }}?tr=w-450c-maintain_ratio">
-        <h3>by {% for p in issue_details.toc_img.creator.all %}{{ p }}{% endfor %}</h3>
+        <h3>by {% for p in issue_details.toc_img.creator.all %}{% if forloop.first %}{{ p }}{% elif forloop.last %} and {{ p }}{% else %}, {{ p }}{% endif %}{% endfor %}</h3>
     </div>
     {% endif %}
 </article>
 
+<div class="bottomnav">
+    <a href="{% url 'contentdetail' issue_num=issue_details.issue_num slug=first_page.slug %}"><img src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevronright_AAQHrtBUGN.svg"></a>
+</div>
 
 {% endblock %}
