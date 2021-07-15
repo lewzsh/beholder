@@ -2,12 +2,23 @@
 
 {% block content %}
 
-<h2>Back Issues</h2>
+<article>
 
-<ul>
-    {% for i in issue_list %}
-    <li><a href="{% url 'issuetoc' issue_num=i.issue_num %}">Issue {{ i.issue_num }}</a></li>
-    {% endfor %}
-</ul>
+    <div class="rotate" id="backissuesheader">
+        <h1 class="rotate">Back Issues</h1>
+    </div>
+
+    <div id="backissuescontent">
+        {% for i in issue_list %}
+        <div>
+            <h2 style="text-align: right; margin-bottom: 0.2em;">Issue {{ i.issue_num }}</h2>
+            <a href="{% url 'issuetoc' issue_num=i.issue_num %}">
+                <img src="{{ i.cover_img_url}}?tr=w-330,h-440,c-maintain_ratio">
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+</article>
 
 {% endblock %}

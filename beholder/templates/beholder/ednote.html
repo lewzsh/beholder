@@ -2,25 +2,6 @@
 
 {% block content %}
 
-{% if content_details.css_class == 'long' %}
-    <div class="scrollheader">
-        <div class="progress-container">
-            <div class="progress-bar" id="progBar"></div>
-        </div>
-    </div>
-
-    <script>
-        window.onscroll = function() {progBarFunction()};
-        
-        function progBarFunction() {
-        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        var scrolled = (winScroll / height) * 100;
-        document.getElementById("progBar").style.width = scrolled + "%";
-        }
-    </script>
-{% endif %}
-
 <div class="topnav">
     {% if previous %}
     <a href="{% url 'contentdetail' issue_num=content_details.issue.issue_num slug=previous.slug %}"><img style="margin-right: auto;" src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevronleft_0lEkWuUlQp.svg"></a>
@@ -34,18 +15,13 @@
 
 <article>
 
-    <h2 class="title">{% if content_details.title != "untitled" %}{{content_details.title}}{% endif %}</h2>
-
-    <h3 class="byline">
-        by {% for p in content_details.creator.all %}{% if forloop.first %}{{ p }}{% elif forloop.last %} and {{ p }}{% else %}, {{ p }}{% endif %}{% endfor %}
-    </h3>
+    <div class="rotate" id="ednoteheader">
+        <h1 class="rotate">Editor’s Note</h1>
+    </div>
 
     <div class="{{ content_details.css_class | escape }}">
-        {% if content_details.img_url %}
-        <img src="{{ content_details.img_url }}?tr=w-600c-maintain_ratio" alt="{{content_details.body}}">
-        {% else %}
         <p>{{ content_details.body | safe }}</p>
-        {% endif %}
+        <p style="text-align: right;">—Lewis</p>
     </div>
 
 </article>

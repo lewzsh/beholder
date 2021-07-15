@@ -2,12 +2,55 @@
 
 {% block content %}
 
-<h2>Contributors</h2>
+<article>
 
-<ul>
-    {% for p in contributor_list %}
-    <li>{{ p }}</li>
-    {% endfor %}
-</ul>
+    <div class="rotate" id="contributorheader">
+        <h1 class="rotate">Contributors</h1>
+    </div>
+
+    <div id="contributorcontent">
+        {% for p in contributor_list %}
+        <button type="button" class="contributor" id="nav{{ p.id }}">
+            <h2>{{ p.person }}</h2>
+            <h4>({{ p.pronouns }})</h4>
+            <span>
+                {% if p.social_url %}
+                <a href="{{ p.social_url }}"><img src="https://ik.imagekit.io/1uzvx5qbuom/beholder/instagram_JNlAhjO8wn.svg"></a>
+                {% endif %}
+                {% if p.person_url %}
+                <a href="{{ p.person_url }}"><img src="https://ik.imagekit.io/1uzvx5qbuom/beholder/website_77x5Mmj23.svg"></a>
+                {% endif %}
+            </span>
+        </button>
+        <div>
+            <img src="{{ p.bio_img_url }}">
+            <p>{{ p.bio_text }}</p>
+            {% if p.person.appears_in.all %}
+            <p>Appears in: 
+                {% for i in p.person.appears_in.all %}{% if forloop.first %}<a href="{% url 'issuetoc' issue_num=i.issue_num %}">{{ i }}</a>{% elif forloop.last %} and <a href="{% url 'issuetoc' issue_num=i.issue_num %}">{{ i }}</a>{% else %}, <a href="{% url 'issuetoc' issue_num=i.issue_num %}">{{ i }}</a>{% endif %}{% endfor %}
+            </p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+</article>
+
+<script>
+    var coll = document.getElementsByClassName("contributor");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
+</script>
 
 {% endblock %}

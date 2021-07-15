@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block content %}
 
-    <img id="latestcover" src="https://ik.imagekit.io/1uzvx5qbuom/issue2/camera_web_KbzrSkdsx.jpg" alt="issue 2 cover image"> 
-
+    <article>
+    
+    <div id="latestcover">
+        <a href="{% url 'current' %}" alt="link to current issue"><img src="{{ latest_issues.first.cover_img_url }}" alt="latest issue cover image"></a>
+    </div>
+    
     <div id="intro">
         <p>
-            Beholder is an exploration of survival. Its message is captured within the ways that we experience suffering and attempt to find ease. 
+            <i>Beholder</i> is an exploration of survival. Its message is captured within the ways that we experience suffering and attempt to find ease. 
             In humor especially we quirk our lips into wry grins and release our pain in small snickers and booming guffaws; 
             yet sometimes we need not even be so cynical and sometimes we just want to preserve quiet, quick moments of joy. 
             This publication is a curation of all our frayed pieces as interwoven threads. It’s a small offering of our hearts given to you in this dark time. 
@@ -15,30 +18,32 @@
         </p>
     </div>
 
-    <div id="backissues">
-        <div class="rotate" id="archiveheader">
-            <h1 class="rotate">Back Issues</h1>
-        </div>
-        <div id="issuelist"> 
-            <img src="https://ik.imagekit.io/1uzvx5qbuom/issue1/Rat_smaller_o3v-teDTha.jpg" alt="issue 1 cover image">
-        </div>
+    <div class="rotate" id="archiveheader">
+        <h1 class="rotate">Back Issues</h1>
+    </div>
+    <div id="issuelist">
+        {% for i in latest_issues %}
+        {% if i != latest_issues.first %}
+        <a href="{% url 'issuetoc' issue_num=i.issue_num %}" alt="link to issue {{ i.issue_num }}">
+            <img src="{{ i.cover_img_url }}" alt="issue {{ i.issue_num }} cover image">
+        </a>
+        {% endif %}
+        {% endfor %}
     </div>
 
-    <div id="aboutus">
-        <div class="rotate" id="aboutheader">
-            <h1 class="rotate" style="">About Us</h1>
-        </div>
-        <div id="abouttext">
-            <p>
-            Beholder Magazine is an independent publication created by a couple of femme queers living in Seattle. 
-            We want to create an equitable platform for marginalized groups and want to especially encourage all PoC, trans, queer, femme, 
-            differently-abled, neuroatypical, or otherwise marginalized creative people to submit if interested. 
-            That said, Beholder is a magazine by all people for all people, and we want to be clear that there’s no “you must have no greater than x privilege” measuring stick we’re using. 
-            Unless someone makes that for us. Can someone make that for us?
-            <br><br>
-            We are currently working on publishing each issue annually, and look forward to compiling and printing an anthology every four issues. 
-            </p>
-        </div>
+    <div class="rotate" id="aboutheader">
+        <h1 class="rotate">About Us</h1>
+    </div>
+    <div id="abouttext">
+        <p>
+        <i>Beholder</i> is an independent publication created by a couple of femme queers living in Seattle. 
+        We're here to create an equitable platform for marginalized groups and want to especially encourage all PoC, trans, queer, femme, 
+        differently-abled, neurodivergent, or otherwise marginalized creative folx to submit if interested. 
+        That said, <i>Beholder</i> is a magazine by all people for all people, and we want to be clear that there’s no “you must have no greater than x privilege” measuring stick we’re using. 
+        Unless someone makes that for us. Can someone make that for us?
+        <br><br>
+        We are currently working on publishing each issue annually, and look forward to compiling and printing an anthology every four issues. 
+        </p>
     </div>
 
     <div id="newssub">
@@ -49,4 +54,5 @@
         </form> 
     </div>
 
+    </article>
 {% endblock %}

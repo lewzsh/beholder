@@ -11,15 +11,15 @@
 
 <link rel="stylesheet" href="{% static 'beholder/styles.css' %}">
 
-<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-
-<title>Beholder Magazine</title>
+<title>Beholder | an arts & lit magazine</title>
+<meta name="description" 
+content="Weird and queer indie magazine creating an equitable platform for marginalized voices. We peddle art, comics, stories, poetry, video games & more.">
 
 <body>
   
     <div class="wrapper">
 
-        <header class="header"><a href="{% url 'index' %}"><img src="https://ik.imagekit.io/1uzvx5qbuom/beholder/beholdertext_N53AJIZxj.svg" alt="Beholder magazine logo" style="width: 338px; height: 79px;" ></a></header>
+        <header class="header"><a href="{% url 'index' %}"><img src="https://ik.imagekit.io/1uzvx5qbuom/beholder/beholdertext_N53AJIZxj.svg" alt="Beholder magazine logo"></a></header>
         
         <nav class="nav">
             <ul>
@@ -29,6 +29,7 @@
                 <li><a href="{% url 'submit' %}">Submit</a></li>
                 <li><a href="https://beholdermag.bigcartel.com/" target="_blank">Shop</a></li>
             </ul>
+            <a target="_blank" href="https://www.instagram.com/beholdermagazine/"><img src="https://ik.imagekit.io/1uzvx5qbuom/beholder/instagram_JNlAhjO8wn.svg" alt="Instagram Link"></a>
         </nav>
 
         <section class="content">

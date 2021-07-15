@@ -2,12 +2,35 @@
 
 {% block content %}
 
-<h2>Issue {{issue_details.issue_num}}</h2>
+<article>
+    <div class="rotate" id="tocheader">
+        <h1 class="rotate">Contents</h1>
+    </div>
 
-<ul>
-    {% for c in issue_details.contents.all %}
-    <li><a href="{% url 'contentdetail' issue_num=issue_details.issue_num slug=c.slug %}">{{ c.title }}</a></li>
-    {% endfor %}
-</ul>
+    <div id="toc">
+        <ul id="toc">
+            {% for c in issue_details.contents.all %}
+            {% if c.page != 0 %}
+            <li>
+                <b>.{{ c.page }}</b> &emsp; 
+                <a href="{% url 'contentdetail' issue_num=issue_details.issue_num slug=c.slug %}">{{ c.title }}</a> 
+                by {% for p in c.creator.all %}{% if forloop.first %}{{ p }}{% elif forloop.last %} and {{ p }}{% else %}, {{ p }}{% endif %}{% endfor %}
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% if issue_details.toc_img %}
+    <div id="tocimg">
+        <img src="{{ issue_details.toc_img.img_url }}?tr=w-450c-maintain_ratio">
+        <h3>by {% for p in issue_details.toc_img.creator.all %}{% if forloop.first %}{{ p }}{% elif forloop.last %} and {{ p }}{% else %}, {{ p }}{% endif %}{% endfor %}</h3>
+    </div>
+    {% endif %}
+</article>
+
+<div class="bottomnav">
+    <a href="{% url 'contentdetail' issue_num=issue_details.issue_num slug=first_page.slug %}"><img src="https://ik.imagekit.io/1uzvx5qbuom/beholder/chevronright_AAQHrtBUGN.svg"></a>
+</div>
 
 {% endblock %}
