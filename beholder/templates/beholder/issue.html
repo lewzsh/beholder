@@ -11,10 +11,11 @@
         <ul id="toc">
             {% for c in issue_details.contents.all %}
             {% if c.page != 0 %}
-            <li><a href="{% url 'contentdetail' issue_num=issue_details.issue_num slug=c.slug %}">
-                <b>.{{ c.page }}</b> &emsp; {{ c.title }} by 
-                {% for p in c.creator.all %}{% if forloop.first %}{{ p }}{% elif forloop.last %} and {{ p }}{% else %}, {{ p }}{% endif %}{% endfor %}
-            </a></li>
+            <li>
+                <b>.{{ c.page }}</b> &emsp; 
+                <a href="{% url 'contentdetail' issue_num=issue_details.issue_num slug=c.slug %}">{{ c.title }}</a> 
+                by {% for p in c.creator.all %}{% if forloop.first %}{{ p }}{% elif forloop.last %} and {{ p }}{% else %}, {{ p }}{% endif %}{% endfor %}
+            </li>
             {% endif %}
             {% endfor %}
         </ul>

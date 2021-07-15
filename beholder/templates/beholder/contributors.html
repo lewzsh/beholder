@@ -25,9 +25,9 @@
         <div>
             <img src="{{ p.bio_img_url }}">
             <p>{{ p.bio_text }}</p>
-            {% if p.person.contributions.all %}
+            {% if p.person.appears_in.all %}
             <p>Appears in: 
-                {% for c in p.person.contributions.all %}{% if forloop.first %}<a href="{% url 'contentdetail' issue_num=c.issue.issue_num slug=c.slug %}">{{ c.title }}</a>{% elif forloop.last %} and <a href="{% url 'contentdetail' issue_num=c.issue.issue_num slug=c.slug %}">{{ c.title }}</a>{% else %}, <a href="{% url 'contentdetail' issue_num=c.issue.issue_num slug=c.slug %}">{{ c.title }}</a>{% endif %}{% endfor %}
+                {% for i in p.person.appears_in.all %}{% if forloop.first %}<a href="{% url 'issuetoc' issue_num=i.issue_num %}">{{ i }}</a>{% elif forloop.last %} and <a href="{% url 'issuetoc' issue_num=i.issue_num %}">{{ i }}</a>{% else %}, <a href="{% url 'issuetoc' issue_num=i.issue_num %}">{{ i }}</a>{% endif %}{% endfor %}
             </p>
             {% endif %}
         </div>

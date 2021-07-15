@@ -1,6 +1,7 @@
+import datetime
+
 from django.db import models
 from django.urls import reverse
-# from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -8,7 +9,7 @@ class Issue(models.Model):
     issue_num = models.IntegerField(unique=True)
     release_date = models.DateField()
     cover_img_url = models.URLField(null=True, blank=True)
-    toc_img = models.ForeignKey('Content', on_delete=models.DO_NOTHING, null=True, related_name='in_issue')
+    toc_img = models.ForeignKey('Content', on_delete=models.DO_NOTHING, blank=True, null=True, related_name='in_issue')
 
     class Meta:
         db_table = 'issue'
@@ -19,7 +20,11 @@ class Issue(models.Model):
         return f'issue {self.issue_num}'
 
     def get_absolute_url(self):
-        return reverse('issuetoc', kwargs={"issue_num": self.issue.issue_num})
+        return reverse('issuetoc', kwargs={"issue_num": self.issue_num})
+
+    def issue_published(self):
+        return self.release_date <= datetime.date.today()
+
 
 class Person(models.Model):
     first_name = models.CharField(max_length=50, blank=True)
@@ -74,12 +79,11 @@ class Content(models.Model):
         (ED_NOTE, 'editors note'),
     ]
 
-    title = models.CharField(max_length=250, blank=True, default="")
+    title = models.CharField(max_length=250, default="untitled")
     creator = models.ManyToManyField(Person, related_name='contributions')
     issue = models.ForeignKey(Issue, on_delete=models.DO_NOTHING, related_name='contents')
     slug = models.SlugField(max_length=200, unique=True)
     pub_date = models.DateField()
-    metades = models.CharField(max_length=300, default="magazine page")
     page = models.IntegerField()
     css_class = models.CharField(max_length=7, choices=CONTENT_CHOICES, default=SHORT_FORM)
     body = models.TextField(blank=True)
@@ -91,7 +95,7 @@ class Content(models.Model):
         ordering = ['page']
 
     def __str__(self):
-        return self.title
+        return self.title 
     
     def get_absolute_url(self):
         return reverse('contentdetail', kwargs={"issue_num": self.issue.issue_num, "slug": self.slug})
@@ -113,3 +117,6 @@ class Content(models.Model):
         else:
             prv = self.page - 1
             return self.issue.contents.get(page=prv)
+
+    def content_published(self):
+        return self.pub_date <= datetime.date.today()

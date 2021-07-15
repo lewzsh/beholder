@@ -1,6 +1,30 @@
 body {
-  background: #FBFBFB;
-  color: #000000;
+  background: #FDFEFF;
+  color: #202022;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* unvisited link */
+a:link {
+  color: #202022;
+}
+
+/* visited link */
+a:visited {
+  color: #202022;
+}
+
+/* mouse over link */
+a:hover {
+  color: #FF005C;
+}
+
+/* selected link */
+a:active {
+  color: #FF005C;
 }
 
 p {
@@ -41,11 +65,6 @@ h4 {
   font-size: 1em;
   font-weight: 400;
   font-style: italic;
-}
-
-a {
-  text-decoration: none;
-  color: #000000;
 }
 
 nav a {
@@ -224,9 +243,9 @@ nav img {
 
 #backissuescontent > div img {
   max-width: 100%;
-  width: 330px;
-  height: auto;
   object-fit: cover;
+  width: 330px;
+  max-height: 440px;
 }
 
 @media (min-width: 490px) {
@@ -330,8 +349,8 @@ nav img {
   gap: 1em;
   align-items: baseline;
   flex-wrap: wrap;
-  background-color: #fbfbfb;
-  border-bottom: 1px solid black;
+  background-color: #FDFEFF;
+  border-bottom: 1px solid #202022;
   line-height: 0em;
 }
 
@@ -383,79 +402,87 @@ nav img {
   }
 }
 /* Less than 490px */
-img#latestcover {
+#latestcover img {
   max-width: 100%;
+  object-fit: cover;
   min-width: 100%;
   height: auto;
-  object-fit: cover;
+  max-height: 542px;
 }
 
-#issuelist > img {
+#issuelist img {
   max-width: 100%;
-  width: 480px;
-  height: 300px;
   object-fit: cover;
+  width: 260px;
+  height: 345px;
+  margin-right: 0.5em;
 }
 
+@media (min-width: 490px) {
+  #issuelist {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
 @media (min-width: 780px) {
   /* 780 and larger */
-  img#latestcover {
+  #latestcover {
+    grid-row: 1;
+    grid-column: 1/13;
+  }
+
+  #latestcover img {
+    width: 100%;
     height: 542px;
-    object-fit: cover;
   }
 
   #intro {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-  }
-
-  #intro > p {
+    grid-row: 2;
     grid-column: 4/11;
     margin-top: 4em;
   }
 
-  #backissues {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    margin-top: 4em;
-  }
-
   #archiveheader {
+    grid-row: 3;
     grid-column: 1/2;
     margin-left: 2em;
+    margin-top: 4em;
   }
 
   #issuelist {
-    grid-column: 3/10;
-  }
-
-  #issuelist > img {
-    width: 645px;
-    height: 345px;
-    object-fit: cover;
-    max-width: 100%;
-  }
-
-  #aboutus {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    grid-row: 3;
+    grid-column: 3/13;
     margin-top: 4em;
-    margin-bottom: 4em;
+  }
+
+  #issuelist img {
+    width: 260px;
+    height: 345px;
+    margin-right: 1em;
   }
 
   #aboutheader {
+    grid-row: 4;
     grid-column: 11/12;
     order: 1;
+    margin-top: 5em;
   }
 
   #abouttext {
+    grid-row: 4;
     grid-column: 2/10;
     order: 0;
-    max-width: 100%;
+    margin-top: 5em;
   }
 
   #abouttext > p {
     margin-top: 0em;
+  }
+
+  #newssub {
+    grid-column: 4/8;
+    grid-row: 5;
+    margin-top: 4em;
   }
 }
 @media (min-width: 780px) {
@@ -493,10 +520,22 @@ img#latestcover {
 ul#toc {
   display: flex;
   flex-direction: column;
-  font: 0.9375em "Libre Baskerville", serif;
-  /* 15px */
+  font-family: "Libre Baskerville", serif;
+  font-size: 0.9375em;
   line-height: 1.8em;
   gap: 1em;
+}
+
+#tocimg {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+#tocimg img {
+  max-width: 100%;
+  object-fit: cover;
 }
 
 @media (min-width: 780px) {
@@ -546,9 +585,9 @@ button {
 }
 
 .btn.striped-shadow.dark span {
-  border-color: #393939;
-  background: #fbfbfb;
-  color: #393939;
+  border-color: #57596C;
+  background: #FDFEFF;
+  color: #57596C;
 }
 
 .btn {
@@ -573,7 +612,7 @@ button {
 }
 
 button.btn.striped-shadow.dark:after, button.btn.striped-shadow.dark:before {
-  background-image: linear-gradient(135deg, transparent 0, transparent 5px, #393939 5px, #393939 10px, transparent 10px);
+  background-image: linear-gradient(135deg, transparent 0, transparent 5px, #57596C 5px, #57596C 10px, transparent 10px);
 }
 
 button.btn.striped-shadow:hover:before {
@@ -624,7 +663,7 @@ button.btn.striped-shadow:before {
 }
 
 .gallery {
-  background: #EEE;
+  background: #FAFCFD;
   margin-bottom: 8em;
 }
 
@@ -658,14 +697,14 @@ button.btn.striped-shadow:before {
   left: 0;
   z-index: 1;
   width: 100%;
-  background-color: #f1f1f1;
+  background-color: #FDFEFF;
 }
 
 /* The progress container (grey background) */
 .progress-container {
   width: 100%;
   height: 8px;
-  background: #ccc;
+  background: #FAFCFD;
 }
 
 /* The progress bar (scroll indicator) */
