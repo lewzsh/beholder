@@ -89,6 +89,8 @@ class Content(models.Model):
     body = models.TextField(blank=True)
     img_url = models.URLField(blank=True, null=True)
 
+    img_list = list()
+
     class Meta:
         db_table = 'content'
         verbose_name_plural = 'contents'
@@ -120,3 +122,9 @@ class Content(models.Model):
 
     def content_published(self):
         return self.pub_date <= datetime.date.today()
+
+    def create_list(self):
+        img_list = list()
+        for line in self.body.split(","):
+            img_list.append(line)
+        self.img_list = img_list
