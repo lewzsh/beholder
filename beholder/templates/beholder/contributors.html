@@ -24,7 +24,7 @@
         </button>
         <div>
             <img src="{{ p.bio_img_url }}">
-            <p>{{ p.bio_text }}</p>
+            <p>{{ p.bio_text | safe }}</p>
             {% if p.person.appears_in.all %}
             <p>Appears in: 
                 {% for i in p.person.appears_in.all %}{% if forloop.first %}<a href="{% url 'issuetoc' issue_num=i.issue_num %}">{{ i }}</a>{% elif forloop.last %} and <a href="{% url 'issuetoc' issue_num=i.issue_num %}">{{ i }}</a>{% else %}, <a href="{% url 'issuetoc' issue_num=i.issue_num %}">{{ i }}</a>{% endif %}{% endfor %}

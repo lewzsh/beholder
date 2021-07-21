@@ -1,0 +1,36 @@
+{% extends 'content.html' %}
+
+{% block page %}
+
+<div class="scrollheader">
+    <div class="progress-container">
+        <div class="progress-bar" id="progBar"></div>
+    </div>
+</div>
+
+<article>
+
+    <h2 class="title">{% if content_details.title != "untitled" %}{{content_details.title}}{% endif %}</h2>
+
+    <h3 class="byline">
+        by {% for p in content_details.creator.all %}{% if forloop.first %}{{ p }}{% elif forloop.last %} and {{ p }}{% else %}, {{ p }}{% endif %}{% endfor %}
+    </h3>
+
+    <div class="long">
+        <p>{{ content_details.body | safe }}</p>
+    </div>
+
+</article>
+
+<script>
+    window.onscroll = function() {progBarFunction()};
+    
+    function progBarFunction() {
+    var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    var scrolled = (winScroll / height) * 100;
+    document.getElementById("progBar").style.width = scrolled + "%";
+    }
+</script>
+
+{% endblock page %}

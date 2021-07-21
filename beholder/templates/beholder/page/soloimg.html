@@ -1,0 +1,19 @@
+{% extends 'content.html' %}
+
+{% block page %}
+
+<article>
+
+    <h2 class="title">{% if content_details.title != "untitled" %}{{content_details.title}}{% endif %}</h2>
+
+    <h3 class="byline">
+        by {% for p in content_details.creator.all %}{% if forloop.first %}{{ p }}{% elif forloop.last %} and {{ p }}{% else %}, {{ p }}{% endif %}{% endfor %}
+    </h3>
+
+    <div class="soloimg">
+        <img src="{{ content_details.img_url }}" alt="{{content_details.body}}">
+    </div>
+
+</article>
+
+{% endblock page %}

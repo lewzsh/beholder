@@ -13,7 +13,7 @@
             {% if c.page != 0 %}
             <li>
                 <b>.{{ c.page }}</b> &emsp; 
-                <a href="{% url 'contentdetail' issue_num=issue_details.issue_num slug=c.slug %}">{{ c.title }}</a> 
+                <a href="{% url 'contentdetail' issue_num=issue_details.issue_num slug=c.slug %}">&#8220;{{ c.title }}&#8221;</a> 
                 by {% for p in c.creator.all %}{% if forloop.first %}{{ p }}{% elif forloop.last %} and {{ p }}{% else %}, {{ p }}{% endif %}{% endfor %}
             </li>
             {% endif %}

@@ -283,6 +283,11 @@ nav img {
   margin-top: 4em;
 }
 
+.soloimg {
+  max-width: 100%;
+  object-fit: cover;
+}
+
 @media (min-width: 780px) {
   /* 780 and larger */
   .title {
@@ -323,16 +328,19 @@ nav img {
   .soloimg {
     grid-column: 3/span 9;
     grid-row: 3;
+    display: flex;
+    justify-content: center;
   }
 
   .poem {
-    grid-column: 5/13;
+    grid-column: 5/span 6;
     grid-row: 3;
   }
 
   .gallery {
     grid-column: 2/12;
     grid-row: 3;
+    display: flex;
   }
 }
 /* Less than 490px */
@@ -407,7 +415,7 @@ nav img {
   object-fit: cover;
   min-width: 100%;
   height: auto;
-  max-height: 542px;
+  max-height: 576px;
 }
 
 #issuelist img {
@@ -433,7 +441,7 @@ nav img {
 
   #latestcover img {
     width: 100%;
-    height: 542px;
+    height: 576px;
   }
 
   #intro {
@@ -662,12 +670,12 @@ button.btn.striped-shadow:before {
   background-position: 0 100%;
 }
 
-.gallery {
+.comic {
   background: #FAFCFD;
   margin-bottom: 8em;
 }
 
-.gallery-cell {
+.comic-cell {
   height: 600px;
   min-width: 100vw;
   max-height: 100vh;
@@ -678,11 +686,7 @@ button.btn.striped-shadow:before {
   justify-content: center;
 }
 
-.gallery.is-fullscreen .gallery-cell {
-  height: 100%;
-}
-
-.gallery-cell > img {
+.comic-cell > img {
   display: block;
   max-height: 100%;
   min-width: auto;
@@ -690,6 +694,44 @@ button.btn.striped-shadow:before {
   max-width: 100%;
 }
 
+.comic.is-fullscreen .comic-cell {
+  height: 100%;
+}
+
+.comic.is-fullscreen .flickity-button {
+  display: none;
+}
+
+@media (min-width: 490px) {
+  /* smaller, dark, rounded square */
+  .comic .flickity-button {
+    background: #333;
+  }
+
+  .comic .flickity-button:hover {
+    background: #333;
+  }
+
+  .comic .flickity-prev-next-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+  }
+
+  /* icon color */
+  .comic .flickity-button-icon {
+    fill: white;
+  }
+
+  /* position outside */
+  .comic .flickity-prev-next-button.previous {
+    left: -80px;
+  }
+
+  .comic .flickity-prev-next-button.next {
+    right: -80px;
+  }
+}
 /* Scroll indicator */
 .scrollheader {
   position: fixed;

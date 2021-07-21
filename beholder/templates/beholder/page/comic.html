@@ -1,0 +1,31 @@
+{% extends 'content.html' %}
+
+{% block page %}
+
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+<link rel="stylesheet" href="https://unpkg.com/flickity-fullscreen@1/fullscreen.css">
+
+<article>
+
+    <h2 class="title">{% if content_details.title != "untitled" %}{{content_details.title}}{% endif %}</h2>
+
+    <h3 class="byline">
+        by {% for p in content_details.creator.all %}{% if forloop.first %}{{ p }}{% elif forloop.last %} and {{ p }}{% else %}, {{ p }}{% endif %}{% endfor %}
+    </h3>
+
+</article>
+
+<div class="comic js-flickity" data-flickity='{ "fullscreen": true, "imagesLoaded": true}'>
+
+    {% for img_url in content_details.img_list %}
+    <div class="comic-cell">
+        <img src="{{ img_url }}">
+    </div>
+    {% endfor %}
+
+</div>
+
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<script src="https://unpkg.com/flickity-fullscreen@1/fullscreen.js"></script>
+
+{% endblock page %}
