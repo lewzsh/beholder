@@ -68,6 +68,7 @@ class Content(models.Model):
     GALLERY = 'gallery'
     SOLO_IMG = 'soloimg'
     ED_NOTE = 'ednote'
+    OTHER = 'other'
 
     CONTENT_CHOICES = [
         (POEM, 'poem'),
@@ -77,13 +78,13 @@ class Content(models.Model):
         (GALLERY, 'image gallery'),
         (SOLO_IMG, 'single image'),
         (ED_NOTE, 'editors note'),
+        (OTHER, 'other'),
     ]
 
     title = models.CharField(max_length=250, default="untitled")
     creator = models.ManyToManyField(Person, related_name='contributions')
     issue = models.ForeignKey(Issue, on_delete=models.DO_NOTHING, related_name='contents')
     slug = models.SlugField(max_length=200, unique=True)
-    pub_date = models.DateField()
     page = models.IntegerField()
     css_class = models.CharField(max_length=7, choices=CONTENT_CHOICES, default=SHORT_FORM)
     body = models.TextField(blank=True)
@@ -119,9 +120,6 @@ class Content(models.Model):
         else:
             prv = self.page - 1
             return self.issue.contents.get(page=prv)
-
-    def content_published(self):
-        return self.pub_date <= datetime.date.today()
 
     def create_list(self):
         img_list = list()

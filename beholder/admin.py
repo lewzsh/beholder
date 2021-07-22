@@ -13,7 +13,7 @@ class BioAdmin(admin.ModelAdmin):
     list_display = ('person', 'pronouns')
 
 class ContentAdmin(admin.ModelAdmin):
-    list_display = ('title', 'issue', 'page', 'pub_date')
+    list_display = ('title', 'issue', 'page')
     list_filter = ('issue',)
     prepopulated_fields = {'slug': ('title',)}
     list_editable = ('page',)
