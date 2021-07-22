@@ -22,9 +22,9 @@ def issue(request, issue_num):
 
 def content_detail(request, issue_num, slug):
     content_details = get_object_or_404(Content, slug=slug)
-    if (content_details.content_published()):
+    if (content_details.issue.issue_published()):
         css_class = content_details.get_content_class()
-        if css_class in ['comic', 'gallery']:
+        if css_class in ['comic']:
             content_details.create_list()
         next = content_details.next()
         previous = content_details.previous()

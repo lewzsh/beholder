@@ -91,9 +91,6 @@ class ContentTests(TestCase):
     def test_contentstring(self):
         self.assertEqual(str(self.testPoem), "Raven")
 
-    def test_pub_date(self):
-        self.assertEqual(str(self.testPoem.pub_date), "2021-06-10")
-
     def test_css_class(self):
         self.assertEqual(self.testPoem.get_content_class(), 'poem')   
 
@@ -109,8 +106,8 @@ class ContentTests(TestCase):
         self.assertEqual(self.testPoem.get_absolute_url(), '/beholder/issue3/raven')
 
     def test_content_published(self):
-        self.assertTrue(self.testPoem.content_published())
-        self.assertFalse(self.testStory.content_published())
+        self.assertTrue(self.testPoem.issue.issue_published())
+        self.assertFalse(self.testStory.issue.issue_published())
 
 # View tests
 
