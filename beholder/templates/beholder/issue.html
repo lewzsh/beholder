@@ -19,13 +19,6 @@
             {% endfor %}
         </ol>
     </div>
-
-    {% if issue_details.toc_img %}
-    <div id="tocimg">
-        <img src="{{ issue_details.toc_img.img_url }}?tr=w-450c-maintain_ratio">
-        <h3>by {% for p in issue_details.toc_img.creator.all %}{% if forloop.first %}{{ p }}{% elif forloop.last %} and {{ p }}{% else %}, {{ p }}{% endif %}{% endfor %}</h3>
-    </div>
-    {% endif %}
 </article>
 
 <div class="bottomnav">
